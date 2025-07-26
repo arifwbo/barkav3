@@ -4,7 +4,7 @@
   <?php $this->load->view(THEME_PATH . 'components/slider') ?>
 </section>
 
-<main class="container space-y-5 my-5 flex-1">
+<main class="container space-y-5 my-5 flex-1 animate-fade-in">
   <?php $this->load->view(THEME_PATH . 'components/newsticker') ?>
 
   <div class="bg-primary text-white lg:py-5">
