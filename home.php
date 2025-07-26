@@ -4,50 +4,77 @@
   <?php $this->load->view(THEME_PATH . 'components/slider') ?>
 </section>
 
-<main class="container space-y-5 my-5 flex-1">
+<main class="container space-y-6 my-6 flex-1">
   <?php $this->load->view(THEME_PATH . 'components/newsticker') ?>
 
-  <div class="bg-primary text-white lg:py-5">
-    <div class="flex flex-col lg:flex-row divide-y-2 lg:divide-x-2 lg:divide-y-0">
-      <div class="lg:w-1/2 py-3 px-5 lg:py-2 flex items-center space-x-5">
-        <span class="fa fa-map-marker text-5xl font-bold text-tertiary"></span>
-        <div class="flex flex-col space-y-2">
+  <!-- CUSTOMIZABLE SECTION: School info hero section -->
+  <div class="bg-gradient-to-r from-primary-blue to-accent-blue text-white lg:py-6 rounded-2xl shadow-lg overflow-hidden">
+    <div class="flex flex-col lg:flex-row divide-y-2 lg:divide-x-2 lg:divide-y-0 divide-white divide-opacity-20">
+      <div class="lg:w-1/2 py-4 px-6 lg:py-4 flex items-center space-x-6 fade-in-on-scroll">
+        <div class="bg-white bg-opacity-10 rounded-full p-4 flex-shrink-0">
+          <span class="fa fa-map-marker text-4xl font-bold text-status-warning"></span>
+        </div>
+        <div class="flex flex-col space-y-3">
           <div class="group">
-            <span class="block text-2xl font-heading font-bold"><?= __session('school_name') ?></span>
-            <span class="block text-sm italic"><?= __session('tagline') ?></span>
+            <span class="block text-2xl font-heading font-bold tracking-wide"><?= __session('school_name') ?></span>
+            <span class="block text-sm italic opacity-90 bg-white bg-opacity-10 inline-block px-3 py-1 rounded-full mt-2">
+              <?= __session('tagline') ?>
+            </span>
           </div>
-          <span><?= __session('street_address') ?>, <?= __session('village') ?>, <?= __session('sub_district') ?>, <?= __session('district') ?></span>
+          <span class="text-sm leading-relaxed">
+            <?= __session('street_address') ?>, <?= __session('village') ?>, <?= __session('sub_district') ?>, <?= __session('district') ?>
+          </span>
         </div>
       </div>
-      <div class="lg:w-1/2 py-3 px-5 lg:py-2 flex items-center space-x-5">
-        <span class="fa fa-comments-o text-5xl font-bold text-tertiary"></span>
-        <div class="flex flex-col space-y-2">
+      
+      <div class="lg:w-1/2 py-4 px-6 lg:py-4 flex items-center space-x-6 fade-in-on-scroll">
+        <div class="bg-white bg-opacity-10 rounded-full p-4 flex-shrink-0">
+          <span class="fa fa-share-alt text-4xl font-bold text-status-warning"></span>
+        </div>
+        <div class="flex flex-col space-y-3">
           <span class="block text-2xl font-heading font-bold">Media Sosial</span>
-          <ul class="grid w-3/4 grid-cols-4 gap-x-5">
+          <div class="flex gap-3">
             <?php if (NULL !== __session('facebook') && __session('facebook')) : ?>
-              <li class="inline-block"><a target="_blank" rel="noopener" href="<?= __session('facebook') ?>" class="h-8 w-8 rounded-full border-2 inline-flex items-center justify-center"><i class="fa fa-facebook text-lg" aria-label="facebook"></i></a></li>
+              <a target="_blank" rel="noopener" href="<?= __session('facebook') ?>" 
+                 class="social-icon bg-white bg-opacity-10 hover:bg-white hover:text-primary-blue">
+                <i class="fa fa-facebook" aria-label="facebook"></i>
+              </a>
             <?php endif ?>
             <?php if (NULL !== __session('twitter') && __session('twitter')) : ?>
-              <li class="inline-block"><a target="_blank" rel="noopener" href="<?= __session('twitter') ?>" class="h-8 w-8 rounded-full border-2 inline-flex items-center justify-center"><i class="fa fa-twitter text-lg" aria-label="twitter"></i></a></li>
+              <a target="_blank" rel="noopener" href="<?= __session('twitter') ?>" 
+                 class="social-icon bg-white bg-opacity-10 hover:bg-white hover:text-primary-blue">
+                <i class="fa fa-twitter" aria-label="twitter"></i>
+              </a>
             <?php endif ?>
             <?php if (NULL !== __session('instagram') && __session('instagram')) : ?>
-              <li class="inline-block"><a target="_blank" rel="noopener" href="<?= __session('instagram') ?>" class="h-8 w-8 rounded-full border-2 inline-flex items-center justify-center"><i class="fa fa-instagram text-lg" aria-label="instagram"></i></a></li>
+              <a target="_blank" rel="noopener" href="<?= __session('instagram') ?>" 
+                 class="social-icon bg-white bg-opacity-10 hover:bg-white hover:text-primary-blue">
+                <i class="fa fa-instagram" aria-label="instagram"></i>
+              </a>
             <?php endif ?>
             <?php if (NULL !== __session('youtube') && __session('youtube')) : ?>
-              <li class="inline-block"><a target="_blank" rel="noopener" href="<?= __session('youtube') ?>" class="h-8 w-8 rounded-full border-2 inline-flex items-center justify-center"><i class="fa fa-youtube-play text-lg" aria-label="youtube"></i></a></li>
+              <a target="_blank" rel="noopener" href="<?= __session('youtube') ?>" 
+                 class="social-icon bg-white bg-opacity-10 hover:bg-white hover:text-primary-blue">
+                <i class="fa fa-youtube-play" aria-label="youtube"></i>
+              </a>
             <?php endif ?>
-          </ul>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="flex flex-col lg:flex-row items-start gap-x-6 relative space-y-5 lg:space-y-0">
-    <div class="w-full lg:w-2/3 space-y-4">
-      <h3 class="font-heading text-2xl capitalize font-black text-title"><span class="fa fa-newspaper-o"></span> Artikel terkini</h3>
-      <div class="grid grid-cols-1 gap-5">
-        <?php $posts = get_latest_posts(5) ?>
-        <?php if ($posts->num_rows() > 0) : ?>
+  <div class="flex flex-col lg:flex-row items-start gap-x-8 relative space-y-6 lg:space-y-0">
+    <div class="w-full lg:w-2/3 space-y-6">
+      <!-- CUSTOMIZABLE SECTION: Latest articles section -->
+      <div class="fade-in-on-scroll">
+        <h3 class="font-heading text-3xl capitalize font-bold text-primary-blue flex items-center gap-3 mb-6">
+          <span class="fa fa-newspaper-o bg-accent-blue text-white p-3 rounded-full"></span> 
+          Artikel Terkini
+        </h3>
+        <div class="grid grid-cols-1 gap-6">
+          <?php $posts = get_latest_posts(5) ?>
+          <?php if ($posts->num_rows() > 0) : ?>
           <?php foreach ($posts->result() as $post) : ?>
             <?php
             $content = substr(strip_tags($post->post_content), 0, 200);
