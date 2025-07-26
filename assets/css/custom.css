@@ -422,10 +422,75 @@ marquee {
   border: 1px solid rgba(59,130,246,0.1);
 }
 
-body.dark-mode marquee {
+/* Enhanced header styling */
+header {
+  background: linear-gradient(135deg, rgba(59,130,246,0.95) 0%, rgba(30,64,175,0.95) 100%) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 3px solid var(--accent-color);
+}
+
+body.dark-mode header {
+  background: linear-gradient(135deg, rgba(15,23,42,0.95) 0%, rgba(30,41,59,0.95) 100%) !important;
+  border-bottom-color: var(--secondary-color);
+}
+
+/* Accent color highlights */
+.text-accent { color: var(--accent-color) !important; }
+.bg-accent { background-color: var(--accent-color) !important; }
+.border-accent { border-color: var(--accent-color) !important; }
+
+/* Enhanced notification/alert styles */
+.alert-success {
+  background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(252,211,77,0.1));
+  border: 1px solid var(--primary-color);
+  color: var(--primary-dark);
+  border-radius: 0.8rem;
+  padding: 1rem 1.5rem;
+}
+
+.alert-warning {
+  background: linear-gradient(135deg, rgba(252,211,77,0.1), rgba(239,68,68,0.1));
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-dark);
+  border-radius: 0.8rem;
+  padding: 1rem 1.5rem;
+}
+
+.alert-error {
+  background: linear-gradient(135deg, rgba(239,68,68,0.1), rgba(30,64,175,0.1));
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  border-radius: 0.8rem;
+  padding: 1rem 1.5rem;
+}
+
+/* Dark mode alert styles */
+body.dark-mode .alert-success,
+body.dark-mode .alert-warning,
+body.dark-mode .alert-error {
+  background: var(--dark-card);
+  color: var(--dark-text);
+}
+
+/* Enhanced link styles */
+a:not(.btn):not(.menu-link) {
+  color: var(--primary-color);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+a:not(.btn):not(.menu-link):hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+  text-decoration-color: var(--secondary-color);
+}
+
+body.dark-mode a:not(.btn):not(.menu-link) {
   color: var(--secondary-color);
-  background: linear-gradient(135deg, rgba(252,211,77,0.1), rgba(96,165,250,0.1));
-  border-color: rgba(252,211,77,0.2);
+}
+
+body.dark-mode a:not(.btn):not(.menu-link):hover {
+  color: var(--accent-light);
 }
 
 @media (max-width: 1023px) {

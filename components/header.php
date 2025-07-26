@@ -34,6 +34,6 @@
     </div>
   </div>
 </header>
-<section class="container lg:-mt-7 z-30 relative lg:sticky top-0">
+<section class="container lg:-mt-5 z-30 relative lg:sticky top-0">
   <?php $this->load->view('themes/barka/components/nav') ?>
 </section>
