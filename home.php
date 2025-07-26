@@ -7,34 +7,34 @@
 <main class="container space-y-5 my-5 flex-1">
   <?php $this->load->view(THEME_PATH . 'components/newsticker') ?>
 
-  <div class="bg-primary text-white lg:py-5">
+  <div class="text-white lg:py-6 animate-fade-in" style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%); border-radius: 1.5rem; box-shadow: var(--card-shadow);">
     <div class="flex flex-col lg:flex-row divide-y-2 lg:divide-x-2 lg:divide-y-0">
-      <div class="lg:w-1/2 py-3 px-5 lg:py-2 flex items-center space-x-5">
-        <span class="fa fa-map-marker text-5xl font-bold text-tertiary"></span>
-        <div class="flex flex-col space-y-2">
+      <div class="lg:w-1/2 py-4 px-6 lg:py-3 flex items-center space-x-6 animate-slide-in-left">
+        <span class="fa fa-map-marker text-5xl font-bold text-yellow-300 animate-float"></span>
+        <div class="flex flex-col space-y-3">
           <div class="group">
-            <span class="block text-2xl font-heading font-bold"><?= __session('school_name') ?></span>
-            <span class="block text-sm italic"><?= __session('tagline') ?></span>
+            <span class="block text-2xl font-heading font-bold hover:text-yellow-200 transition-colors duration-300"><?= __session('school_name') ?></span>
+            <span class="block text-sm italic opacity-90"><?= __session('tagline') ?></span>
           </div>
-          <span><?= __session('street_address') ?>, <?= __session('village') ?>, <?= __session('sub_district') ?>, <?= __session('district') ?></span>
+          <span class="text-gray-100"><?= __session('street_address') ?>, <?= __session('village') ?>, <?= __session('sub_district') ?>, <?= __session('district') ?></span>
         </div>
       </div>
-      <div class="lg:w-1/2 py-3 px-5 lg:py-2 flex items-center space-x-5">
-        <span class="fa fa-comments-o text-5xl font-bold text-tertiary"></span>
-        <div class="flex flex-col space-y-2">
+      <div class="lg:w-1/2 py-4 px-6 lg:py-3 flex items-center space-x-6 animate-slide-in-right">
+        <span class="fa fa-comments-o text-5xl font-bold text-yellow-300 animate-float" style="animation-delay: 0.5s;"></span>
+        <div class="flex flex-col space-y-3">
           <span class="block text-2xl font-heading font-bold">Media Sosial</span>
-          <ul class="grid w-3/4 grid-cols-4 gap-x-5">
+          <ul class="grid w-3/4 grid-cols-4 gap-x-3">
             <?php if (NULL !== __session('facebook') && __session('facebook')) : ?>
-              <li class="inline-block"><a target="_blank" rel="noopener" href="<?= __session('facebook') ?>" class="h-8 w-8 rounded-full border-2 inline-flex items-center justify-center"><i class="fa fa-facebook text-lg" aria-label="facebook"></i></a></li>
+              <li class="inline-block"><a target="_blank" rel="noopener" href="<?= __session('facebook') ?>" class="social-icon tooltip h-10 w-10 inline-flex items-center justify-center bg-white text-blue-600 hover:bg-blue-600 hover:text-white"><i class="fa fa-facebook text-lg" aria-label="facebook"></i><span class="tooltip-text">Facebook</span></a></li>
             <?php endif ?>
             <?php if (NULL !== __session('twitter') && __session('twitter')) : ?>
-              <li class="inline-block"><a target="_blank" rel="noopener" href="<?= __session('twitter') ?>" class="h-8 w-8 rounded-full border-2 inline-flex items-center justify-center"><i class="fa fa-twitter text-lg" aria-label="twitter"></i></a></li>
+              <li class="inline-block"><a target="_blank" rel="noopener" href="<?= __session('twitter') ?>" class="social-icon tooltip h-10 w-10 inline-flex items-center justify-center bg-white text-blue-400 hover:bg-blue-400 hover:text-white"><i class="fa fa-twitter text-lg" aria-label="twitter"></i><span class="tooltip-text">Twitter</span></a></li>
             <?php endif ?>
             <?php if (NULL !== __session('instagram') && __session('instagram')) : ?>
-              <li class="inline-block"><a target="_blank" rel="noopener" href="<?= __session('instagram') ?>" class="h-8 w-8 rounded-full border-2 inline-flex items-center justify-center"><i class="fa fa-instagram text-lg" aria-label="instagram"></i></a></li>
+              <li class="inline-block"><a target="_blank" rel="noopener" href="<?= __session('instagram') ?>" class="social-icon tooltip h-10 w-10 inline-flex items-center justify-center bg-white text-pink-500 hover:bg-pink-500 hover:text-white"><i class="fa fa-instagram text-lg" aria-label="instagram"></i><span class="tooltip-text">Instagram</span></a></li>
             <?php endif ?>
             <?php if (NULL !== __session('youtube') && __session('youtube')) : ?>
-              <li class="inline-block"><a target="_blank" rel="noopener" href="<?= __session('youtube') ?>" class="h-8 w-8 rounded-full border-2 inline-flex items-center justify-center"><i class="fa fa-youtube-play text-lg" aria-label="youtube"></i></a></li>
+              <li class="inline-block"><a target="_blank" rel="noopener" href="<?= __session('youtube') ?>" class="social-icon tooltip h-10 w-10 inline-flex items-center justify-center bg-white text-red-500 hover:bg-red-500 hover:text-white"><i class="fa fa-youtube-play text-lg" aria-label="youtube"></i><span class="tooltip-text">YouTube</span></a></li>
             <?php endif ?>
           </ul>
         </div>
