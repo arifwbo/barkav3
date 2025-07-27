@@ -14,35 +14,30 @@
   <div class="flex flex-col lg:flex-row items-start gap-x-6 relative space-y-5 lg:space-y-0">
     <section class="w-full lg:w-2/3 space-y-4">
       <h1 class="font-heading text-2xl capitalize font-black text-title"><span class="fa fa-phone"></span> <?= ucwords($page_title) ?></h1>
-      <div class="mapouter border border-secondary mb-3">
+      <div class="card modern-shadow animate-fade-in">
         <div class="gmap_canvas">
           <?= __session('map_location') ?>
         </div>
       </div>
-      <form action="" method="post" class="space-y-3">
-        <div class="flex flex-col lg:flex-row">
-          <label for="comment_author" class="lg:w-1/4 pt-1">Nama Lengkap <span style="color: red">*</span></label>
-          <div class="lg:w-3/4">
-            <input type="text" class="form-input w-full" id="comment_author" name="comment_author">
-          </div>
+      <form action="" method="post" class="space-y-6">
+        <div class="form-group">
+          <input type="text" class="form-input w-full" id="comment_author" name="comment_author" placeholder=" " required>
+          <label for="comment_author">Nama Lengkap <span style="color: red">*</span></label>
         </div>
-        <div class="flex flex-col lg:flex-row">
-          <label for="comment_email" class="lg:w-1/4 pt-1">Email <span style="color: red">*</span></label>
-          <div class="lg:w-3/4">
-            <input type="text" class="form-input w-full" id="comment_email" name="comment_email">
-          </div>
+        
+        <div class="form-group">
+          <input type="email" class="form-input w-full" id="comment_email" name="comment_email" placeholder=" " required>
+          <label for="comment_email">Email <span style="color: red">*</span></label>
         </div>
-        <div class="flex flex-col lg:flex-row">
-          <label for="comment_url" class="lg:w-1/4 pt-1">URL</label>
-          <div class="lg:w-3/4">
-            <input type="text" class="form-input w-full" id="comment_url" name="comment_url">
-          </div>
+        
+        <div class="form-group">
+          <input type="url" class="form-input w-full" id="comment_url" name="comment_url" placeholder=" ">
+          <label for="comment_url">Website (Opsional)</label>
         </div>
-        <div class="flex flex-col lg:flex-row">
-          <label for="comment_content" class="lg:w-1/4 pt-1">Pesan <span style="color: red">*</span></label>
-          <div class="lg:w-3/4">
-            <textarea class="form-textarea pt-1 w-full" id="comment_content" name="comment_content" rows="4"></textarea>
-          </div>
+        
+        <div class="form-group">
+          <textarea class="form-textarea w-full" id="comment_content" name="comment_content" rows="4" placeholder=" " required></textarea>
+          <label for="comment_content">Pesan <span style="color: red">*</span></label>
         </div>
         <?php if (NULL !== __session('recaptcha_status') && __session('recaptcha_status') == 'enable') : ?>
           <div class="flex flex-col lg:flex-row">
@@ -54,7 +49,10 @@
         <?php endif ?>
         <div class="flex flex-col lg:flex-row pt-3">
           <span class="lg:w-1/4"></span>
-          <button type="button" onclick="send_message(); return false;" class="bg-secondary opacity-80 transition duration-100 hover:opacity-100 text-white rounded py-2 px-5"><i class="fa fa-send"></i> Kirim</button>
+          <button type="button" onclick="send_message(); return false;" class="btn animate-scale-in">
+            <i class="fa fa-send"></i> 
+            <span>Kirim Pesan</span>
+          </button>
         </div>
       </form>
     </section>
