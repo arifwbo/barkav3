@@ -4,10 +4,10 @@
   <?php $this->load->view(THEME_PATH . 'components/slider') ?>
 </section>
 
-<main class="container space-y-5 my-5 flex-1">
+<main class="container space-y-5 my-5 flex-1 page-transition">
   <?php $this->load->view(THEME_PATH . 'components/newsticker') ?>
 
-  <div class="bg-primary text-white lg:py-5">
+  <section class="bg-primary text-white lg:py-5 rounded-lg shadow-xl interactive-card hover-lift">
     <div class="flex flex-col lg:flex-row divide-y-2 lg:divide-x-2 lg:divide-y-0">
       <div class="lg:w-1/2 py-3 px-5 lg:py-2 flex items-center space-x-5">
         <span class="fa fa-map-marker text-5xl font-bold text-tertiary"></span>
@@ -40,7 +40,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <div class="flex flex-col lg:flex-row items-start gap-x-6 relative space-y-5 lg:space-y-0">
     <div class="w-full lg:w-2/3 space-y-4">

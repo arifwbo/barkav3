@@ -45,8 +45,39 @@
   <script>
     $(window).on('load', function() {
       $('.preloader').fadeOut(1000);
-
+    });
+    
+    // Modern page transition effects
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add smooth entrance animation to main content
+      const mainContent = document.querySelector('main');
+      if (mainContent) {
+        mainContent.style.opacity = '0';
+        mainContent.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+          mainContent.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+          mainContent.style.opacity = '1';
+          mainContent.style.transform = 'translateY(0)';
+        }, 100);
+      }
+      
+      // Enhance navigation links with page transition hint
+      document.querySelectorAll('a[href]').forEach(link => {
+        if (link.hostname === window.location.hostname && !link.hash) {
+          link.addEventListener('click', function(e) {
+            const href = this.href;
+            if (href && href !== window.location.href) {
+              // Add subtle loading feedback
+              this.style.opacity = '0.7';
+              setTimeout(() => {
+                if (this.style) this.style.opacity = '1';
+              }, 300);
+            }
+          });
+        }
       });
+    });
   </script>
 
 </body>
