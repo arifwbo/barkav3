@@ -41,70 +41,133 @@
 
 <main class="container space-y-5 my-5 flex-1">
   <div class="flex flex-col lg:flex-row items-start gap-x-6 relative space-y-5 lg:space-y-0">
-    <article class="w-full lg:w-2/3 space-y-4">
-      <h1 class="text-title lg:text-3xl text-xl font-bold font-heading"><?= $query->post_title ?></h1>
-      <ul class="lg:space-x-5 flex flex-col lg:flex-row flex-wrap text-sm">
-        <li><span class="fa fa-calendar mr-2 text-secondary"></span> <?=day_name(date('N', strtotime($query->created_at))) ?>, <?=indo_date(substr($query->created_at, 0, 10)) ?></li>
+    <article class="w-full lg:w-2/3 space-y-6">
+      <header class="card">
+        <h1 class="text-title text-3xl lg:text-4xl font-bold font-heading leading-tight mb-4"><?= $query->post_title ?></h1>
         
-        <li>
-          <span class="fa fa-tag mr-2 text-secondary"></span>
-          <?php if($tag = $query->post_tags) : ?>
-            <?php $post_tags = explode(',', $tag) ?>
-            <?php foreach($post_tags as $tag) : ?>
-              <a href="<?= site_url('tag/'.url_title(strtolower(trim($tag)))) ?>" class="mr-2"><?= ucwords($tag) ?></a>
-            <?php endforeach ?>
-          <?php endif ?>
-        </li>
-        <li><span class="fa fa-user mr-2 text-secondary"></span> <?= $post_author ?></li>
-        <li><span class="fa fa-comments mr-2 text-secondary"></span> <?= $post_comments->num_rows() ?> komentar</li>
-      </ul>
+        <div class="flex flex-wrap gap-4 text-sm text-muted border-b border-gray-200 pb-4">
+          <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 bg-gradient-to-r from-primary-color to-accent-color rounded-full flex items-center justify-center">
+              <i class="fa fa-calendar text-white text-xs"></i>
+            </div>
+            <span><?=day_name(date('N', strtotime($query->created_at))) ?>, <?=indo_date(substr($query->created_at, 0, 10)) ?></span>
+          </div>
+          
+          <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 bg-gradient-to-r from-primary-color to-accent-color rounded-full flex items-center justify-center">
+              <i class="fa fa-user text-white text-xs"></i>
+            </div>
+            <span><?= $post_author ?></span>
+          </div>
+          
+          <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 bg-gradient-to-r from-primary-color to-accent-color rounded-full flex items-center justify-center">
+              <i class="fa fa-comments text-white text-xs"></i>
+            </div>
+            <span><?= $post_comments->num_rows() ?> komentar</span>
+          </div>
+        </div>
+
+        <?php if($tag = $query->post_tags) : ?>
+        <div class="flex flex-wrap gap-2 mt-4">
+          <?php $post_tags = explode(',', $tag) ?>
+          <?php foreach($post_tags as $tag) : ?>
+            <a href="<?= site_url('tag/'.url_title(strtolower(trim($tag)))) ?>" 
+               class="inline-block px-3 py-1 bg-gray-100 hover:bg-primary-color hover:text-white rounded-full text-sm transition-colors duration-300">
+              #<?= ucwords(trim($tag)) ?>
+            </a>
+          <?php endforeach ?>
+        </div>
+        <?php endif ?>
+      </header>
 
       <?php if($post_type == 'post' && is_file('./media_library/posts/large/'.$query->post_image)) : ?>
-        <img src="<?= base_url('media_library/posts/large/'.$query->post_image) ?>" alt="<?= $query->post_title ?>" class="max-w-full w-full h-auto">
+        <div class="card">
+          <img src="<?= base_url('media_library/posts/large/'.$query->post_image) ?>" 
+               alt="<?= $query->post_title ?>" 
+               class="w-full h-auto rounded-lg shadow-lg">
+        </div>
       <?php endif ?>
 
-      <div class="content space-y-4">
-        <?= $query->post_content ?>
+      <div class="card">
+        <div class="content prose prose-lg max-w-none">
+          <?= $query->post_content ?>
+        </div>
       </div>
 
 
-      <span class="block font-bold">Bagikan artikel ini:</span>
-      <div class="flex space-x-2">
-          <a href="http://www.facebook.com/sharer.php?u=<?= site_url('read/'.$query->id.'/'.$query->post_slug) ?>" target="_blank" rel="noopener" class="inline-flex items-center justify-center w-10 h-10 bg-facebook text-white rounded-full hover:ring-2 hover:ring-tertiary hover:ring-offset-2 transition duration-100">
-            <i class="fa fa-facebook text-xl"></i>
+      <div class="card">
+        <h3 class="font-bold text-lg mb-4 flex items-center">
+          <i class="fa fa-share-alt mr-2 text-primary-color"></i>
+          Bagikan artikel ini
+        </h3>
+        <div class="flex space-x-3">
+          <a href="http://www.facebook.com/sharer.php?u=<?= site_url('read/'.$query->id.'/'.$query->post_slug) ?>" 
+             target="_blank" rel="noopener" 
+             class="social-icon bg-blue-600 hover:bg-blue-700">
+            <i class="fa fa-facebook text-white"></i>
           </a>
-          <a href="http://twitter.com/share?url=<?= site_url('read/'.$query->id.'/'.$query->post_slug) ?>" target="_blank" rel="noopener" class="inline-flex items-center justify-center w-10 h-10 bg-twitter text-white rounded-full hover:ring-2 hover:ring-tertiary hover:ring-offset-2 transition duration-100">
-            <i class="fa fa-twitter text-xl"></i>
+          <a href="http://twitter.com/share?url=<?= site_url('read/'.$query->id.'/'.$query->post_slug) ?>" 
+             target="_blank" rel="noopener" 
+             class="social-icon bg-blue-400 hover:bg-blue-500">
+            <i class="fa fa-twitter text-white"></i>
           </a>
-          <a href="https://telegram.me/share/url?url=<?= site_url('read/'.$query->id.'/'.$query->post_slug) ?>" target="_blank" rel="noopener" class="inline-flex items-center justify-center w-10 h-10 bg-telegram text-white rounded-full hover:ring-2 hover:ring-tertiary hover:ring-offset-2 transition duration-100">
-            <i class="fa fa-telegram text-xl"></i>
+          <a href="https://telegram.me/share/url?url=<?= site_url('read/'.$query->id.'/'.$query->post_slug) ?>" 
+             target="_blank" rel="noopener" 
+             class="social-icon bg-blue-500 hover:bg-blue-600">
+            <i class="fa fa-telegram text-white"></i>
           </a>
-          <a href="https://api.whatsapp.com/send?text=<?= site_url('read/'.$query->id.'/'.$query->post_slug) ?>" target="_blank" rel="noopener" class="inline-flex items-center justify-center w-10 h-10 bg-whatsapp text-white rounded-full hover:ring-2 hover:ring-tertiary hover:ring-offset-2 transition duration-100">
-            <i class="fa fa-whatsapp text-xl"></i>
+          <a href="https://api.whatsapp.com/send?text=<?= site_url('read/'.$query->id.'/'.$query->post_slug) ?>" 
+             target="_blank" rel="noopener" 
+             class="social-icon bg-green-500 hover:bg-green-600">
+            <i class="fa fa-whatsapp text-white"></i>
           </a>
+        </div>
       </div>
 
       <?php if($post_comments->num_rows() > 0) : ?>
-        <section class="space-y-2 py-5">
-          <h4 class="text-lg font-bold font-heading"><?= $post_comments->num_rows() ?> Komentar</h4>
-          <?php foreach($post_comments->result() as $comment) : ?>  
-            <div class="bg-white px-5 py-4 shadow space-y-2 border comment">
-              <blockquote class="italic">"<?=strip_tags($comment->comment_content) ?>"</blockquote>
-              <div class="text-xs space-x-3">
-                <span><i class="fa fa-calendar-o fa-sm mr-1 text-secondary"></i> <?=date('d M Y H:i', strtotime($comment->created_at)) ?></span>
-                <span><i class="fa fa-user fa-sm mr-1 text-secondary"></i> <?= $comment->comment_author ?></span>
-              </div>
-            </div>
-            <?php if(! empty($comment->comment_reply)) : ?>
-              <div class="bg-white px-5 py-4 shadow space-y-2 border comment">
-                <blockquote class="italic">"<?=strip_tags($comment->comment_reply) ?>"</blockquote>
-                <div class="text-xs space-x-3">
-                  <span><i class="fa fa-user fa-sm mr-1 text-secondary"></i> <?= $comment->comment_author ?></span>
+        <section class="card">
+          <h4 class="text-xl font-bold font-heading mb-6 flex items-center">
+            <i class="fa fa-comments mr-2 text-primary-color"></i>
+            <?= $post_comments->num_rows() ?> Komentar
+          </h4>
+          <div class="space-y-4">
+            <?php foreach($post_comments->result() as $comment) : ?>  
+              <div class="bg-gray-50 p-4 rounded-lg comment group">
+                <blockquote class="text-gray-700 italic mb-3 leading-relaxed">
+                  "<?=strip_tags($comment->comment_content) ?>"
+                </blockquote>
+                <div class="flex items-center space-x-4 text-sm text-muted">
+                  <div class="flex items-center space-x-2">
+                    <i class="fa fa-calendar-o text-primary-color"></i>
+                    <span><?=date('d M Y H:i', strtotime($comment->created_at)) ?></span>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <i class="fa fa-user text-primary-color"></i>
+                    <span class="font-medium"><?= $comment->comment_author ?></span>
+                  </div>
                 </div>
+                
+                <?php if(! empty($comment->comment_reply)) : ?>
+                  <div class="mt-4 ml-6 p-3 bg-blue-50 border-l-4 border-primary-color rounded">
+                    <div class="text-sm text-gray-600 mb-1">
+                      <i class="fa fa-reply text-primary-color mr-1"></i>
+                      <span class="font-medium">Balasan:</span>
+                    </div>
+                    <blockquote class="text-gray-700 italic">
+                      "<?=strip_tags($comment->comment_reply) ?>"
+                    </blockquote>
+                  </div>
+                <?php endif ?>
               </div>
-            <?php endif ?>
-          <?php endforeach ?>
-          <button type="button" onclick="get_post_comments()" class="bg-secondary opacity-80 transition duration-100 hover:opacity-100 text-white rounded py-2 px-5 more-comments"><i class="fa fa-refresh"></i> Komentar Lainnya</button>
+            <?php endforeach ?>
+          </div>
+          <div class="text-center mt-6">
+            <button type="button" onclick="get_post_comments()" class="btn more-comments">
+              <i class="fa fa-refresh"></i> 
+              <span>Komentar Lainnya</span>
+            </button>
+          </div>
         </section>
       <?php endif ?>
 

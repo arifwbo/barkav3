@@ -61,33 +61,40 @@
           let image = `${_BASE_URL}media_library/posts/medium/${row.post_image}`;
           const isImageExist = isUrlFound(image);
           image = isImageExist ? image : '<?= base_url('media_library/images/'. __session('logo')) ?>';
-          const classImage = isImageExist ? 'w-full object-cover object-center h-inherit' : 'w-16';
+          const classImage = isImageExist ? 'w-full h-48 object-cover object-center transition-transform duration-300 group-hover:scale-105' : 'w-16 h-16 mx-auto my-16';
           const date = new Date(row.created_at);
           const monthNameInID = ['Jan', 'Peb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nop', 'Des'];
           const dateVal = date.getDate();
           const monthVal = date.getMonth();
           const link = `${_BASE_URL}read/${row.id}/${row.post_slug}`;
           const template = `
-          <div class="bg-white overflow-hidden relative flex flex-col lg:flex-row justify-between post" data-aos="fade-in">
-            <div class="w-full h-48 lg:h-full lg:w-5/12 flex-shrink-0 bg-gray-300 flex items-center justify-center">
-              <img src="${image}" alt="${row.post_title}" class="${classImage}">
-            </div>
-            <div class="flex flex-col absolute top-0 left-0 px-3 py-2 bg-secondary text-white text-center">
-              <span class="text-3xl font-black">${dateVal}</span>
-                <span class="tracking-wide uppercase">${monthNameInID[monthVal]}</span>
-            </div>
-            <div class="w-full lg:w-7/12 space-y-2 py-2 lg:px-4 flex flex-col justify-between">
-              <div class="space-y-2">
-                <a href="${link}" class="transition duration-200 hover:text-secondary">
-                  <h2 class="font-black text-lg lg:text-xl font-heading">${row.post_title}</h2>
-                </a>
-                <p class="break-normal whitespace-normal">
-                  ${remove_tags(row.post_content, '').substr(0, 165)}
-                </p>
+          <article class="card post group animate-fade-in" data-aos="fade-up">
+            <div class="flex flex-col lg:flex-row gap-6">
+              <div class="w-full lg:w-5/12 flex-shrink-0 relative overflow-hidden rounded-lg">
+                <img src="${image}" alt="${row.post_title}" class="${classImage}" loading="lazy">
+                
+                <div class="absolute top-4 left-4 bg-gradient-to-r from-primary-color to-accent-color text-white text-center rounded-lg p-3 shadow-lg">
+                  <span class="block text-2xl font-bold">${dateVal}</span>
+                  <span class="block text-xs uppercase tracking-wide">${monthNameInID[monthVal]}</span>
+                </div>
               </div>
-              <a href="${link}" class="block text-secondary">Baca selengkapnya <span class="fa fa-chevron-right text-xs ml-1"></span></a>
+              
+              <div class="w-full lg:w-7/12 flex flex-col justify-between space-y-4">
+                <div class="space-y-3">
+                  <a href="${link}" class="group-hover:text-primary-color transition-colors duration-300">
+                    <h2 class="font-bold text-xl lg:text-2xl font-heading leading-tight">${row.post_title}</h2>
+                  </a>
+                  <p class="text-muted leading-relaxed">
+                    ${remove_tags(row.post_content, '').substr(0, 165)}...
+                  </p>
+                </div>
+                <a href="${link}" class="inline-flex items-center text-primary-color font-semibold hover:text-accent-color transition-colors duration-300">
+                  Baca selengkapnya 
+                  <i class="fa fa-chevron-right text-xs ml-2"></i>
+                </a>
+              </div>
             </div>
-          </div>`;
+          </article>`;
           html += template;
         }
         const el = $(".post:last");
@@ -108,38 +115,47 @@
       <div class="grid grid-cols-1 gap-5">
         <?php if($query->num_rows() > 0) : ?>
           <?php foreach($query->result() as $post) : ?>
-            <div class="bg-white overflow-hidden relative flex flex-col lg:flex-row justify-between post" data-aos="fade-up">
-
-              <div class="w-full h-48 lg:h-full lg:w-5/12 flex-shrink-0 bg-gray-300 flex items-center justify-center">
-
-                <?php $post_image = 'media_library/posts/medium/'.$post->post_image; ?>
-                <?php $poster = is_file('./'.$post_image) ? base_url($post_image) : base_url('media_library/images/'. __session('logo')) ?>
-                <?php $poster_class = is_file('./'.$post_image) ? 'w-full object-cover object-center h-inherit' : 'w-16' ?>
-                <?php $link = site_url('read/'.$post->id.'/'.$post->post_slug) ?>
-                <img src="<?= $poster ?>" alt="<?= $post->post_title ?>" class="<?= $poster_class ?>">
-              </div>
-              
-              <div class="flex flex-col absolute top-0 left-0 px-3 py-2 bg-secondary text-white text-center">
-                <?php $date = explode('-', date('Y-m-d', strtotime($post->created_at))) ?>
-                <span class="text-3xl font-black"><?= $date[2] ?></span>
-                <span class="tracking-wide uppercase"><?= substr(bulan($date[1]), 0, 3) ?></span>
-              </div>
-              <div class="w-full lg:w-7/12 space-y-2 py-2 lg:px-4 flex flex-col justify-between">
-                <div class="space-y-2">
-                  <a href="<?= $link ?>" class="transition duration-200 hover:text-secondary">
-                    <h2 class="font-black text-lg lg:text-xl font-heading"><?= $post->post_title ?></h2>
-                  </a>
-                  <p class="break-normal whitespace-normal">
-                    <?= substr(strip_tags($post->post_content), 0, 165) ?>
-                  </p>
+            <article class="card post group animate-fade-in" data-aos="fade-up">
+              <div class="flex flex-col lg:flex-row gap-6">
+                <div class="w-full lg:w-5/12 flex-shrink-0 relative overflow-hidden rounded-lg">
+                  <?php $post_image = 'media_library/posts/medium/'.$post->post_image; ?>
+                  <?php $poster = is_file('./'.$post_image) ? base_url($post_image) : base_url('media_library/images/'. __session('logo')) ?>
+                  <?php $poster_class = is_file('./'.$post_image) ? 'w-full h-48 object-cover object-center transition-transform duration-300 group-hover:scale-105' : 'w-16 h-16 mx-auto my-16' ?>
+                  <?php $link = site_url('read/'.$post->id.'/'.$post->post_slug) ?>
+                  <img src="<?= $poster ?>" alt="<?= $post->post_title ?>" class="<?= $poster_class ?>" loading="lazy">
+                  
+                  <div class="absolute top-4 left-4 bg-gradient-to-r from-primary-color to-accent-color text-white text-center rounded-lg p-3 shadow-lg">
+                    <?php $date = explode('-', date('Y-m-d', strtotime($post->created_at))) ?>
+                    <span class="block text-2xl font-bold"><?= $date[2] ?></span>
+                    <span class="block text-xs uppercase tracking-wide"><?= substr(bulan($date[1]), 0, 3) ?></span>
+                  </div>
                 </div>
-                <a href="<?= $link ?>" class="block text-secondary">Baca selengkapnya <span class="fa fa-chevron-right text-xs ml-1"></span></a>
+                
+                <div class="w-full lg:w-7/12 flex flex-col justify-between space-y-4">
+                  <div class="space-y-3">
+                    <a href="<?= $link ?>" class="group-hover:text-primary-color transition-colors duration-300">
+                      <h2 class="font-bold text-xl lg:text-2xl font-heading leading-tight"><?= $post->post_title ?></h2>
+                    </a>
+                    <p class="text-muted leading-relaxed">
+                      <?= substr(strip_tags($post->post_content), 0, 165) ?>...
+                    </p>
+                  </div>
+                  <a href="<?= $link ?>" class="inline-flex items-center text-primary-color font-semibold hover:text-accent-color transition-colors duration-300">
+                    Baca selengkapnya 
+                    <i class="fa fa-chevron-right text-xs ml-2"></i>
+                  </a>
+                </div>
               </div>
-            </div>
+            </article>
           <?php endforeach ?>
         <?php endif ?>
       </div>
-      <button class="bg-secondary opacity-80 transition duration-100 hover:opacity-100 text-white rounded py-2 px-5 load-more" data-aos="fade-up" onclick="get_posts()"><i class="fa fa-loading"></i> Muat Artikel Selanjutnya</button>
+      <div class="text-center">
+        <button class="btn load-more" data-aos="fade-up" onclick="get_posts()">
+          <i class="fa fa-refresh"></i> 
+          <span>Muat Artikel Selanjutnya</span>
+        </button>
+      </div>
     </div>
 
     <div class="w-full lg:w-1/3 space-y-5 ">

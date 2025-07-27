@@ -23,14 +23,22 @@
         for (var z in rows) {
           const row = rows[ z ];
           const template = `
-          <figure class="shadow-md bg-white overflow-hidden album flex flex-col justify-between">
-            <img src="${_BASE_URL}media_library/albums/${row.album_cover}" alt="${row.album_title}" class="h-48 w-full object-fit object-cover flex items-center justify-center bg-gray-300">
-            <figcaption class="py-2 text-center">
-              ${row.album_title}
-            </figcaption>
-            <div class="px-3 py-2">
-              <button type="button" onclick="photo_preview(${row.id})" class="bg-secondary text-white block w-full py-2 text-center mx-2"><i class="fa fa-search mr-2"></i> Lihat</button>
+          <figure class="card album animate-fade-in group cursor-pointer" onclick="photo_preview(${row.id})">
+            <div class="relative overflow-hidden rounded-lg mb-4">
+              <img src="${_BASE_URL}media_library/albums/${row.album_cover}" 
+                   alt="${row.album_title}" 
+                   class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                   loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <i class="fa fa-search text-2xl"></i>
+              </div>
             </div>
+            <figcaption class="text-center">
+              <h3 class="font-semibold text-lg text-gray-800 group-hover:text-primary-color transition-colors duration-300">
+                ${row.album_title}
+              </h3>
+            </figcaption>
           </figure>
           `;
           html += template;
@@ -45,18 +53,31 @@
 
 <main class="container space-y-5 my-5 flex-1">
   <h1 class="text-title text-2xl font-bold font-heading"><?= $page_title ?></h1>
-  <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
     <?php foreach($query->result() as $album) : ?>
-      <figure class="shadow-md bg-white overflow-hidden album flex flex-col justify-between">
-        <img src="<?= base_url('media_library/albums/'.$album->album_cover) ?>" alt="<?= $album->album_title ?>" class="h-48 w-full object-fit object-cover flex items-center justify-center bg-gray-300">
-        <figcaption class="py-2 text-center">
-          <?= $album->album_title ?>
-        </figcaption>
-        <div class="px-3 py-2">
-          <button type="button" onclick="photo_preview(<?= $album->id ?>)" class="bg-secondary text-white block w-full py-2 text-center mx-2"><i class="fa fa-search mr-2"></i> Lihat</button>
+      <figure class="card album animate-fade-in group cursor-pointer" onclick="photo_preview(<?= $album->id ?>)">
+        <div class="relative overflow-hidden rounded-lg mb-4">
+          <img src="<?= base_url('media_library/albums/'.$album->album_cover) ?>" 
+               alt="<?= $album->album_title ?>" 
+               class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+               loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <i class="fa fa-search text-2xl"></i>
+          </div>
         </div>
+        <figcaption class="text-center">
+          <h3 class="font-semibold text-lg text-gray-800 group-hover:text-primary-color transition-colors duration-300">
+            <?= $album->album_title ?>
+          </h3>
+        </figcaption>
       </figure>
     <?php endforeach ?>
   </div>
-  <button type="button" onclick="get_albums(); return false;" class="bg-secondary opacity-80 transition duration-100 hover:opacity-100 text-white rounded py-2 px-5 more-albums"><i class="fa fa-refresh"></i> Tampilkan Lebih Banyak</button>
+  <div class="text-center mt-8">
+    <button type="button" onclick="get_albums(); return false;" class="btn more-albums">
+      <i class="fa fa-refresh"></i> 
+      <span>Tampilkan Lebih Banyak</span>
+    </button>
+  </div>
 </main>

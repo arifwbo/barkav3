@@ -7,26 +7,36 @@
     });
   })
 </script>
-<main class="container space-y-5 my-5 flex-1">
-  <h1 class="text-title text-2xl font-bold font-heading"><?= ucwords($page_title) ?></h1>
-  <form class="space-y-3">
-    <div class="flex flex-col lg:flex-row">
-      <label for="full_name" class="lg:w-1/4 pt-1">Nama Lengkap <span style="color: red">*</span></label>
-      <div class="lg:w-3/4">
-        <input type="text" class="form-input w-full" id="full_name" name="full_name">
+<main class="container space-y-8 my-8">
+  <div class="card">
+    <h1 class="text-title text-3xl font-bold font-heading mb-2"><?= ucwords($page_title) ?></h1>
+    <p class="text-muted mb-6">Daftarkan diri Anda sebagai alumni untuk tetap terhubung dengan sekolah</p>
+    
+    <form class="space-y-6">
+      <div class="bg-gradient-to-r from-primary-color to-accent-color text-white p-6 rounded-xl mb-8">
+        <h2 class="text-xl font-bold mb-2">
+          <i class="fa fa-graduation-cap mr-2"></i>
+          Formulir Pendaftaran Alumni
+        </h2>
+        <p class="text-blue-100">Lengkapi data berikut untuk mendaftar sebagai alumni</p>
       </div>
-    </div>
-    <div class="flex flex-col lg:flex-row">
-      <label for="gender" class="lg:w-1/4 pt-1">Jenis Kelamin <span style="color: red">*</span></label>
-      <div class="lg:w-3/4">
-        <?= form_dropdown('gender', ['' => 'Pilih :', 'M' => 'Laki-laki', 'F' => 'Perempuan'], '', 'class="form-select w-full" id="gender"') ?>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="form-group">
+          <input type="text" class="form-input w-full" id="full_name" name="full_name" placeholder=" " required>
+          <label for="full_name">Nama Lengkap <span class="text-red-500">*</span></label>
+        </div>
+
+        <div class="form-group">
+          <?= form_dropdown('gender', ['' => 'Pilih jenis kelamin', 'M' => 'Laki-laki', 'F' => 'Perempuan'], '', 'class="form-select w-full" id="gender" required') ?>
+          <label for="gender">Jenis Kelamin <span class="text-red-500">*</span></label>
+        </div>
       </div>
-    </div>
-    <div class="flex flex-col lg:flex-row">
-      <label for="birth_date" class="lg:w-1/4 pt-1">Tanggal Lahir <span style="color: red">*</span></label>
-      <div class="lg:w-3/4">
-        <div class="relative">
-          <input type="text" readonly class="form-input w-full date" id="birth_date" name="birth_date" data-toggle="datepicker">
+
+      <div class="form-group">
+        <input type="text" readonly class="form-input w-full date" id="birth_date" name="birth_date" data-toggle="datepicker" placeholder=" " required>
+        <label for="birth_date">Tanggal Lahir <span class="text-red-500">*</span></label>
+      </div>
           <div class="absolute top-1/2 right-0 mr-3 transform -translate-y-1/2">
             <span class="btn btn-sm btn-outline-secondary rounded-0"><i class="fa fa-calendar text-dark"></i></span>
           </div>

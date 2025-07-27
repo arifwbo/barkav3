@@ -7,34 +7,38 @@
 <main class="container space-y-5 my-5 flex-1">
   <?php $this->load->view(THEME_PATH . 'components/newsticker') ?>
 
-  <div class="bg-primary text-white lg:py-5">
-    <div class="flex flex-col lg:flex-row divide-y-2 lg:divide-x-2 lg:divide-y-0">
-      <div class="lg:w-1/2 py-3 px-5 lg:py-2 flex items-center space-x-5">
-        <span class="fa fa-map-marker text-5xl font-bold text-tertiary"></span>
-        <div class="flex flex-col space-y-2">
+  <div class="card bg-gradient-to-r from-primary-color to-primary-dark text-white lg:py-8 animate-fade-in">
+    <div class="flex flex-col lg:flex-row divide-y-2 lg:divide-x-2 lg:divide-y-0 divide-white/20">
+      <div class="lg:w-1/2 py-6 px-6 lg:py-4 flex items-center space-x-6">
+        <div class="bg-white/20 p-4 rounded-full">
+          <span class="fa fa-map-marker text-4xl font-bold text-white"></span>
+        </div>
+        <div class="flex flex-col space-y-3">
           <div class="group">
-            <span class="block text-2xl font-heading font-bold"><?= __session('school_name') ?></span>
-            <span class="block text-sm italic"><?= __session('tagline') ?></span>
+            <span class="block text-2xl lg:text-3xl font-heading font-bold"><?= __session('school_name') ?></span>
+            <span class="block text-sm lg:text-base italic text-blue-100"><?= __session('tagline') ?></span>
           </div>
-          <span><?= __session('street_address') ?>, <?= __session('village') ?>, <?= __session('sub_district') ?>, <?= __session('district') ?></span>
+          <span class="text-blue-100 leading-relaxed"><?= __session('street_address') ?>, <?= __session('village') ?>, <?= __session('sub_district') ?>, <?= __session('district') ?></span>
         </div>
       </div>
-      <div class="lg:w-1/2 py-3 px-5 lg:py-2 flex items-center space-x-5">
-        <span class="fa fa-comments-o text-5xl font-bold text-tertiary"></span>
-        <div class="flex flex-col space-y-2">
-          <span class="block text-2xl font-heading font-bold">Media Sosial</span>
-          <ul class="grid w-3/4 grid-cols-4 gap-x-5">
+      <div class="lg:w-1/2 py-6 px-6 lg:py-4 flex items-center space-x-6">
+        <div class="bg-white/20 p-4 rounded-full">
+          <span class="fa fa-comments-o text-4xl font-bold text-white"></span>
+        </div>
+        <div class="flex flex-col space-y-3">
+          <span class="block text-2xl lg:text-3xl font-heading font-bold">Media Sosial</span>
+          <ul class="flex space-x-3">
             <?php if (NULL !== __session('facebook') && __session('facebook')) : ?>
-              <li class="inline-block"><a target="_blank" rel="noopener" href="<?= __session('facebook') ?>" class="h-8 w-8 rounded-full border-2 inline-flex items-center justify-center"><i class="fa fa-facebook text-lg" aria-label="facebook"></i></a></li>
+              <li><a target="_blank" rel="noopener" href="<?= __session('facebook') ?>" class="social-icon"><i class="fa fa-facebook" aria-label="facebook"></i></a></li>
             <?php endif ?>
             <?php if (NULL !== __session('twitter') && __session('twitter')) : ?>
-              <li class="inline-block"><a target="_blank" rel="noopener" href="<?= __session('twitter') ?>" class="h-8 w-8 rounded-full border-2 inline-flex items-center justify-center"><i class="fa fa-twitter text-lg" aria-label="twitter"></i></a></li>
+              <li><a target="_blank" rel="noopener" href="<?= __session('twitter') ?>" class="social-icon"><i class="fa fa-twitter" aria-label="twitter"></i></a></li>
             <?php endif ?>
             <?php if (NULL !== __session('instagram') && __session('instagram')) : ?>
-              <li class="inline-block"><a target="_blank" rel="noopener" href="<?= __session('instagram') ?>" class="h-8 w-8 rounded-full border-2 inline-flex items-center justify-center"><i class="fa fa-instagram text-lg" aria-label="instagram"></i></a></li>
+              <li><a target="_blank" rel="noopener" href="<?= __session('instagram') ?>" class="social-icon"><i class="fa fa-instagram" aria-label="instagram"></i></a></li>
             <?php endif ?>
             <?php if (NULL !== __session('youtube') && __session('youtube')) : ?>
-              <li class="inline-block"><a target="_blank" rel="noopener" href="<?= __session('youtube') ?>" class="h-8 w-8 rounded-full border-2 inline-flex items-center justify-center"><i class="fa fa-youtube-play text-lg" aria-label="youtube"></i></a></li>
+              <li><a target="_blank" rel="noopener" href="<?= __session('youtube') ?>" class="social-icon"><i class="fa fa-youtube-play" aria-label="youtube"></i></a></li>
             <?php endif ?>
           </ul>
         </div>
