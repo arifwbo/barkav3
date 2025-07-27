@@ -1,0 +1,360 @@
+/* Copilot Theme - Modern Glassmorphism Design */
+/* ============================================ */
+
+:root {
+  /* Copilot Color Palette */
+  --copilot-primary: #1e40af;         /* Deep blue */
+  --copilot-primary-light: #3b82f6;   /* Bright blue */
+  --copilot-primary-dark: #1e3a8a;    /* Darker blue */
+  --copilot-secondary: #06b6d4;       /* Cyan accent */
+  --copilot-accent: #8b5cf6;          /* Purple accent */
+  --copilot-success: #10b981;         /* Green */
+  --copilot-warning: #f59e0b;         /* Amber */
+  --copilot-error: #ef4444;           /* Red */
+  
+  /* Glass effect variables */
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  --glass-backdrop: blur(10px);
+  
+  /* Card variants */
+  --card-glass: rgba(255, 255, 255, 0.15);
+  --card-glass-hover: rgba(255, 255, 255, 0.25);
+  --card-border-radius: 20px;
+  
+  /* Animation variables */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Enhanced Glass Effects for Cards */
+.copilot-card,
+.card.copilot-glass,
+.bg-white.copilot-glass,
+.profile-alumni.copilot-glass,
+.profile-student.copilot-glass,
+.profile-employees.copilot-glass {
+  background: var(--card-glass) !important;
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--card-border-radius) !important;
+  box-shadow: var(--glass-shadow);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.copilot-card::before,
+.card.copilot-glass::before,
+.bg-white.copilot-glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--copilot-primary-light), transparent);
+  opacity: 0.6;
+}
+
+.copilot-card:hover,
+.card.copilot-glass:hover,
+.bg-white.copilot-glass:hover {
+  background: var(--card-glass-hover) !important;
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(31, 38, 135, 0.4);
+}
+
+/* Enhanced Buttons with Glass Effect */
+.copilot-btn,
+.btn.copilot-style,
+button.copilot-style {
+  background: linear-gradient(135deg, var(--copilot-primary) 0%, var(--copilot-primary-light) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px !important;
+  color: white !important;
+  font-weight: 600;
+  padding: 12px 24px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 0 4px 20px rgba(30, 64, 175, 0.3);
+  transition: var(--transition-bounce);
+  position: relative;
+  overflow: hidden;
+}
+
+.copilot-btn::before,
+.btn.copilot-style::before,
+button.copilot-style::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.copilot-btn:hover::before,
+.btn.copilot-style:hover::before,
+button.copilot-style:hover::before {
+  left: 100%;
+}
+
+.copilot-btn:hover,
+.btn.copilot-style:hover,
+button.copilot-style:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 30px rgba(30, 64, 175, 0.5);
+  background: linear-gradient(135deg, var(--copilot-primary-light) 0%, var(--copilot-secondary) 100%);
+}
+
+/* Floating Action Button (FAB) */
+.copilot-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--copilot-primary) 0%, var(--copilot-accent) 100%);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 8px 24px rgba(30, 64, 175, 0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-bounce);
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.copilot-fab:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 12px 32px rgba(30, 64, 175, 0.6);
+}
+
+.copilot-fab i {
+  font-size: 20px;
+  color: white;
+}
+
+/* Enhanced Form Inputs */
+.copilot-input,
+input.copilot-style,
+textarea.copilot-style,
+select.copilot-style {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+  color: #374151 !important;
+  transition: var(--transition-smooth) !important;
+}
+
+.copilot-input:focus,
+input.copilot-style:focus,
+textarea.copilot-style:focus,
+select.copilot-style:focus {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-color: var(--copilot-primary-light) !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+  outline: none !important;
+}
+
+/* Navigation Enhancements */
+.copilot-nav {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.copilot-nav .menu-link,
+.copilot-nav .menu-item > a {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  margin: 0 4px;
+  transition: var(--transition-smooth);
+}
+
+.copilot-nav .menu-link:hover,
+.copilot-nav .menu-item > a:hover {
+  background: var(--copilot-primary-light) !important;
+  color: white !important;
+  transform: translateY(-2px);
+}
+
+/* Enhanced Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--copilot-primary), var(--copilot-secondary));
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--copilot-primary-light), var(--copilot-accent));
+}
+
+/* Modal and Overlay Effects */
+.copilot-modal {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Notification Styles */
+.copilot-notification {
+  background: var(--card-glass);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--glass-border);
+  border-radius: 15px;
+  box-shadow: var(--glass-shadow);
+  padding: 16px 20px;
+  margin: 8px 0;
+}
+
+/* Header and Section Enhancements */
+.copilot-header {
+  background: linear-gradient(135deg, 
+    rgba(30, 64, 175, 0.9) 0%, 
+    rgba(59, 130, 246, 0.8) 50%, 
+    rgba(139, 92, 246, 0.7) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Thumbnail and Image Enhancements */
+.thumbnail.copilot-style,
+.copilot-thumbnail {
+  border-radius: 16px !important;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: var(--transition-smooth);
+  position: relative;
+}
+
+.thumbnail.copilot-style::after,
+.copilot-thumbnail::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.thumbnail.copilot-style:hover::after,
+.copilot-thumbnail:hover::after {
+  opacity: 1;
+}
+
+.thumbnail.copilot-style:hover,
+.copilot-thumbnail:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsive Design Enhancements */
+@media (max-width: 768px) {
+  .copilot-fab {
+    bottom: 16px;
+    right: 16px;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .copilot-fab i {
+    font-size: 18px;
+  }
+  
+  .copilot-card,
+  .card.copilot-glass {
+    margin: 8px 0;
+  }
+  
+  :root {
+    --card-border-radius: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .copilot-btn,
+  .btn.copilot-style {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  
+  :root {
+    --card-border-radius: 12px;
+  }
+}
+
+/* Auto-apply theme classes to existing elements */
+body.copilot-theme .card,
+body.copilot-theme .bg-white,
+body.copilot-theme .profile-alumni,
+body.copilot-theme .profile-student,
+body.copilot-theme .profile-employees {
+  background: var(--card-glass) !important;
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--card-border-radius) !important;
+  box-shadow: var(--glass-shadow);
+}
+
+body.copilot-theme .btn,
+body.copilot-theme button:not(.copilot-fab) {
+  background: linear-gradient(135deg, var(--copilot-primary) 0%, var(--copilot-primary-light) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 15px !important;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+body.copilot-theme input,
+body.copilot-theme textarea,
+body.copilot-theme select {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+}
+
+/* Loading Animation */
+@keyframes copilot-pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+.copilot-loading {
+  animation: copilot-pulse 2s infinite;
+}
+
+/* Gradient Text Effect */
+.copilot-gradient-text {
+  background: linear-gradient(135deg, var(--copilot-primary), var(--copilot-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
