@@ -7,24 +7,30 @@
     });
   })
 </script>
-<main class="container space-y-5 my-5">
-  <h1 class="text-title text-2xl font-bold font-heading"><?= $page_title ?></h1>
+<main class="container space-y-8 my-8">
+  <div class="card">
+    <h1 class="text-title text-3xl font-bold font-heading mb-2"><?= $page_title ?></h1>
+    <p class="text-muted mb-6">Silakan lengkapi formulir pendaftaran berikut dengan data yang benar dan valid</p>
     
-  <form action="" class="space-y-3">
-    <h6 class="lg:text-xl text-lg font-bold font-heading mb-3">Registrasi <?= __session('_student') ?></h6>
-    <div class="flex flex-col lg:flex-row">
-      <label for="is_transfer" class="lg:w-1/4 pt-1">Jenis Pendaftaran <span style="color: red">*</span></label>
-      <div class="lg:w-3/4">
-        <?= form_dropdown('is_transfer', ['' => 'Pilih :', 'false' => 'Baru', 'true' => 'Pindahan'], set_value('is_transfer'), 'class="form-select w-full" id="is_transfer"') ?>
+    <form action="" class="space-y-6">
+      <div class="bg-gradient-to-r from-primary-color to-accent-color text-white p-6 rounded-xl mb-8">
+        <h2 class="text-xl font-bold mb-2">
+          <i class="fa fa-graduation-cap mr-2"></i>
+          Registrasi <?= __session('_student') ?>
+        </h2>
+        <p class="text-blue-100">Pastikan semua data yang dimasukkan sudah benar</p>
       </div>
-    </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="form-group">
+          <?= form_dropdown('is_transfer', ['' => 'Pilih jenis pendaftaran', 'false' => 'Siswa Baru', 'true' => 'Siswa Pindahan'], set_value('is_transfer'), 'class="form-select w-full" id="is_transfer" required') ?>
+          <label for="is_transfer">Jenis Pendaftaran <span class="text-red-500">*</span></label>
+        </div>
 
-    <div class="flex flex-col lg:flex-row">
-      <label for="admission_type_id" class="lg:w-1/4 pt-1">Jalur Pendaftaran <span style="color: red">*</span></label>
-      <div class="lg:w-3/4">
-        <?= form_dropdown('admission_type_id', $admission_types, set_value('admission_type_id'), 'class="form-select w-full" id="admission_type_id"') ?>
+        <div class="form-group">
+          <?= form_dropdown('admission_type_id', array_merge(['' => 'Pilih jalur pendaftaran'], $admission_types), set_value('admission_type_id'), 'class="form-select w-full" id="admission_type_id" required') ?>
+          <label for="admission_type_id">Jalur Pendaftaran <span class="text-red-500">*</span></label>
+        </div>
       </div>
-    </div>
 
     <!-- Khusus SMA/SMK/PT -->
     <?php if (__session('major_count') > 0) : ?>

@@ -24,48 +24,34 @@ function get_alumni() {
       for (var z in rows) {
         const row = rows[ z ];
         const template = `
-        <div class="profile-alumni">
-          <div class="shadow bg-white flex flex-col lg:flex-row lg:items-center justify-between py-2 px-3">
-            <div class="lg:w-1/4"><img src="${row.photo}" class="thumbnail w-full text-center mx-auto"/></div>
-            <div class="lg:w-3/4">
-              <div class="py-2 px-3">
-                <dl class="block flex-wrap text-gray-500 divide-y">
-                  <div class="flex justify-between">
-                    <dt>Nama Lengkap</dt>
-                    <dd>${row.full_name}</dd>
-                  </div>
-
-                  <div class="flex justify-between">
-                    <dt>${_IDENTITY_NUMBER}</dt>
-                    <dd>${row.identity_number}</dd>
-                  </div>
-
-                  <div class="flex justify-between">
-                    <dt>Jenis Kelamin</dt>
-                    <dd>${row.gender}</dd>
-                  </div>
-
-                  <div class="flex justify-between">
-                    <dt>Tempat Lahir</dt>
-                    <dd>${row.birth_place}</dd>
-                  </div>
-
-                  <div class="flex justify-between">
-                    <dt>Tanggal Lahir</dt>
-                    <dd>${row.birth_date}</dd>
-                  </div>
-
-                  <div class="flex justify-between">
-                    <dt>Tahun Masuk</dt>
-                    <dd>${row.start_date}</dd>
-                  </div>
-
-                  <div class="flex justify-between">
-                    <dt>Tahun Keluar</dt>
-                    <dd>${row.end_date}</dd>
-                  </div>
-                </dl>
+        <div class="profile-alumni group animate-fade-in">
+          <div class="flex flex-col items-center text-center space-y-4">
+            <div class="relative">
+              <img src="${row.photo}" class="w-24 h-24 lg:w-32 lg:h-32 object-cover rounded-full border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-300" loading="lazy">
+              <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-primary-color to-accent-color rounded-full flex items-center justify-center">
+                <i class="fa fa-graduation-cap text-white text-sm"></i>
               </div>
+            </div>
+            <div class="space-y-3 w-full">
+              <h3 class="font-bold text-lg text-primary-color">${row.full_name}</h3>
+              <dl class="grid grid-cols-1 gap-2 text-sm">
+                <div class="bg-gray-50 p-3 rounded-lg">
+                  <dt class="text-muted text-xs uppercase tracking-wide">${_IDENTITY_NUMBER}</dt>
+                  <dd class="font-medium text-gray-800">${row.identity_number}</dd>
+                </div>
+                <div class="bg-gray-50 p-3 rounded-lg">
+                  <dt class="text-muted text-xs uppercase tracking-wide">Jenis Kelamin</dt>
+                  <dd class="font-medium text-gray-800">${row.gender}</dd>
+                </div>
+                <div class="bg-gray-50 p-3 rounded-lg">
+                  <dt class="text-muted text-xs uppercase tracking-wide">Tempat, Tanggal Lahir</dt>
+                  <dd class="font-medium text-gray-800">${row.birth_place}, ${row.birth_date}</dd>
+                </div>
+                <div class="bg-gray-50 p-3 rounded-lg">
+                  <dt class="text-muted text-xs uppercase tracking-wide">Periode</dt>
+                  <dd class="font-medium text-gray-800">${row.start_date} - ${row.end_date}</dd>
+                </div>
+              </dl>
             </div>
           </div>
         </div>
@@ -79,78 +65,60 @@ function get_alumni() {
   }
 }
 </script>
-<style>
-  .thumbnail {
-    height: 6rem;
-    width: auto;
-  }
-  @media screen and (min-width: 1024px) {
-    .thumbnail {
-      width: 100%;
-      height: auto;
-    }
-  }
-</style>
+
 <main class="container space-y-5 my-5 flex-1">
   <div class="space-y-4">
     <h1 class="font-heading text-2xl font-black text-title"><span class="fa fa-bar"></span> <?= ucwords($page_title) ?></h1>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
       <?php foreach($query->result() as $row) : ?>
-        <div class="profile-alumni">
-          <div class="shadow bg-white flex flex-col lg:flex-row lg:items-center justify-between py-2 px-3">
-            <div class="w-full lg:w-1/4">
+        <div class="profile-alumni group animate-fade-in">
+          <div class="flex flex-col items-center text-center space-y-4">
+            <div class="relative">
               <?php
               $photo = 'no-image.png';
               if ($row->photo && is_file($_SERVER['DOCUMENT_ROOT'] . '/media_library/students/'.$row->photo)) {
                 $photo = $row->photo;
               }
-              echo '<img src="' . base_url('media_library/students/'.$photo).'" class="thumbnail w-auto flex-shrink-0 text-center mx-auto">';
+              echo '<img src="' . base_url('media_library/students/'.$photo).'" class="w-24 h-24 lg:w-32 lg:h-32 object-cover rounded-full border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-300" loading="lazy">';
               ?>
+              <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-primary-color to-accent-color rounded-full flex items-center justify-center">
+                <i class="fa fa-graduation-cap text-white text-sm"></i>
+              </div>
             </div>
-            <div class="w-full lg:w-3/4">
-              <div class="py-2 px-3">
-                <dl class="block flex-wrap text-gray-500 divide-y">
-                  <div class="flex justify-between">
-                    <dt>Nama Lengkap</dt>
-                    <dd><?= $row->full_name ?></dd>
-                  </div>
+            <div class="space-y-3 w-full">
+              <h3 class="font-bold text-lg text-primary-color"><?= $row->full_name ?></h3>
+              <dl class="grid grid-cols-1 gap-2 text-sm">
+                <div class="bg-gray-50 p-3 rounded-lg">
+                  <dt class="text-muted text-xs uppercase tracking-wide"><?= __session('_identity_number') ?></dt>
+                  <dd class="font-medium text-gray-800"><?= $row->identity_number ?></dd>
+                </div>
 
-                  <div class="flex justify-between">
-                    <dt><?= __session('_identity_number') ?></dt>
-                    <dd><?= $row->identity_number ?></dd>
-                  </div>
+                <div class="bg-gray-50 p-3 rounded-lg">
+                  <dt class="text-muted text-xs uppercase tracking-wide">Jenis Kelamin</dt>
+                  <dd class="font-medium text-gray-800"><?= $row->gender ?></dd>
+                </div>
 
-                  <div class="flex justify-between">
-                    <dt>Jenis Kelamin</dt>
-                    <dd><?= $row->gender ?></dd>
-                  </div>
+                <div class="bg-gray-50 p-3 rounded-lg">
+                  <dt class="text-muted text-xs uppercase tracking-wide">Tempat, Tanggal Lahir</dt>
+                  <dd class="font-medium text-gray-800"><?= $row->birth_place ?>, <?= indo_date($row->birth_date) ?></dd>
+                </div>
 
-                  <div class="flex justify-between">
-                    <dt>Tempat Lahir</dt>
-                    <dd><?= $row->birth_place ?></dd>
-                  </div>
-
-                  <div class="flex justify-between">
-                    <dt>Tanggal Lahir</dt>
-                    <dd><?= indo_date($row->birth_date) ?></dd>
-                  </div>
-
-                  <div class="flex justify-between">
-                    <dt>Tahun Masuk</dt>
-                    <dd><?= $row->start_date ?></dd>
-                  </div>
-
-                  <div class="flex justify-between">
-                    <dt>Tahun Keluar</dt>
-                    <dd><?= $row->end_date ?></dd>
-                  </div>
-                </dl>
+                <div class="bg-gray-50 p-3 rounded-lg">
+                  <dt class="text-muted text-xs uppercase tracking-wide">Periode</dt>
+                  <dd class="font-medium text-gray-800"><?= $row->start_date ?> - <?= $row->end_date ?></dd>
+                </div>
+              </dl>
               </div>
             </div>
           </div>
         </div>
       <?php endforeach ?>
     </div>
-    <button type="button" onclick="get_alumni()" class="bg-secondary opacity-80 transition duration-100 hover:opacity-100 text-white rounded py-2 px-5 text-center more-alumni"><i class="fa fa-refresh"></i> Tampilkan Lebih Banyak</button>
+    <div class="text-center">
+      <button type="button" onclick="get_alumni()" class="btn more-alumni">
+        <i class="fa fa-refresh"></i> 
+        <span>Tampilkan Lebih Banyak</span>
+      </button>
+    </div>
   </div>
 </main>
