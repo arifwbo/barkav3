@@ -9,15 +9,18 @@
 <header  class="bg-primary shadow-md py-2 lg:pt-3 lg:pb-10 sticky top-0 z-20 lg:static">
   <div class="container flex flex-col lg:flex-row justify-between">
     <div class="group flex justify-between">
-      <a href="<?= site_url() ?>" class="flex lg:flex-row items-center py-2 space-x-5">
+      <a href="<?= site_url() ?>" class="flex lg:flex-row items-center py-2 space-x-5 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary rounded transition duration-200" aria-label="<?= __session('school_name') ?> - Home">
         <img src="<?= base_url('media_library/images/'. __session('logo')) ?>" alt="Logo <?= __session('school_name') ?>" class="w-12 lg:w-16 h-auto">
         <span class="flex flex-col font-black text-white text-justify font-heading">
           <span class="text-lg lg:text-xl"><?= $initial_name ?></span>
           <span class="uppercase text-xl lg:text-2xl tracking-wide"><?= $last_name ?></span>
         </span>
       </a>
-      <button class="lg:hidden px-2 text-xl active:outline-none focus:outline-none h-auto z-50 transition duration-200 menu-button">
-        <span class="fa fa-bars text-white"></span>
+      <button class="lg:hidden px-2 text-xl active:outline-none focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary h-auto z-50 transition duration-200 menu-button" 
+              aria-label="Toggle navigation menu" 
+              aria-expanded="false" 
+              aria-controls="main-navigation">
+        <span class="fa fa-bars text-white transition-transform duration-200"></span>
       </button>
     </div>
     <div class="hidden lg:flex items-center space-x-5">
