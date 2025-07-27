@@ -28,38 +28,30 @@
         for (var z in rows) {
           const row = rows[ z ];
           const template = `
-          <div class="profile-student">
-            <div class="shadow bg-white flex flex-col lg:flex-row lg:items-center justify-between py-2 px-3">
-              <div class="lg:w-1/4"><img src="${row.photo}" class="thumbnail w-full text-center mx-auto"/></div>
-              <div class="lg:w-3/4">
-                <div class="py-2 px-3">
-                  <dl class="block flex-wrap text-gray-500 divide-y">
-                    <div class="flex justify-between">
-                      <dt>Nama Lengkap</dt>
-                      <dd>${row.full_name}</dd>
-                    </div>
-
-                    <div class="flex justify-between">
-                      <dt>${_IDENTITY_NUMBER}</dt>
-                      <dd>${row.identity_number}</dd>
-                    </div>
-
-                    <div class="flex justify-between">
-                      <dt>Jenis Kelamin</dt>
-                      <dd>${row.gender}</dd>
-                    </div>
-
-                    <div class="flex justify-between">
-                      <dt>Tempat Lahir</dt>
-                      <dd>${row.birth_place}</dd>
-                    </div>
-
-                    <div class="flex justify-between">
-                      <dt>Tanggal Lahir</dt>
-                      <dd>${row.birth_date}</dd>
-                    </div>
-                  </dl>
+          <div class="profile-student group animate-fade-in">
+            <div class="flex flex-col items-center text-center space-y-4">
+              <div class="relative">
+                <img src="${row.photo}" class="w-24 h-24 lg:w-32 lg:h-32 object-cover rounded-full border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-300" loading="lazy">
+                <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-primary-color to-accent-color rounded-full flex items-center justify-center">
+                  <i class="fa fa-graduation-cap text-white text-sm"></i>
                 </div>
+              </div>
+              <div class="space-y-3 w-full">
+                <h3 class="font-bold text-lg text-primary-color">${row.full_name}</h3>
+                <dl class="grid grid-cols-1 gap-2 text-sm">
+                  <div class="bg-gray-50 p-3 rounded-lg">
+                    <dt class="text-muted text-xs uppercase tracking-wide">${_IDENTITY_NUMBER}</dt>
+                    <dd class="font-medium text-gray-800">${row.identity_number}</dd>
+                  </div>
+                  <div class="bg-gray-50 p-3 rounded-lg">
+                    <dt class="text-muted text-xs uppercase tracking-wide">Jenis Kelamin</dt>
+                    <dd class="font-medium text-gray-800">${row.gender}</dd>
+                  </div>
+                  <div class="bg-gray-50 p-3 rounded-lg">
+                    <dt class="text-muted text-xs uppercase tracking-wide">Tempat, Tanggal Lahir</dt>
+                    <dd class="font-medium text-gray-800">${row.birth_place}, ${row.birth_date}</dd>
+                  </div>
+                </dl>
               </div>
             </div>
           </div>
@@ -72,18 +64,6 @@
     }
   }
   </script>
-  <style>
-    .thumbnail {
-      height: 6rem;
-      width: auto;
-    }
-    @media screen and (min-width: 1024px) {
-      .thumbnail {
-        width: 100%;
-        height: auto;
-      }
-    }
-</style>
 <main class="container space-y-5 my-5 flex-1">
   <div class="space-y-4">
     <h3 class="font-heading text-2xl font-black text-title"><span class="fa fa-student"></span> <?= ucwords($page_title) ?></h3>
@@ -98,11 +78,14 @@
           <?= form_dropdown('class_group_id', $class_groups, '', 'class="form-select w-full" id="class_group_id"') ?>
         </div>
         <div class="w-full">
-          <button type="button" onclick="get_students()" class="bg-secondary opacity-80 transition duration-100 hover:opacity-100 text-white rounded py-2 px-5 text-center"><i class="fa fa-search mr-2"></i> CARI</button>
+          <button type="button" onclick="get_students()" class="btn">
+            <i class="fa fa-search"></i> 
+            <span>CARI SISWA</span>
+          </button>
         </div>
       </div>
     </form>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 student-directory"></div>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 student-directory animate-fade-in"></div>
     <div class="loading-area"></div>
   </div>
 </main>
