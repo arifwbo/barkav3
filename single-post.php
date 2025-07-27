@@ -39,7 +39,7 @@
   }
 </script>
 
-<main class="container space-y-5 my-5 flex-1">
+<main class="container space-y-5 my-5 flex-1 animate-fade-in">
   <div class="flex flex-col lg:flex-row items-start gap-x-6 relative space-y-5 lg:space-y-0">
     <article class="w-full lg:w-2/3 space-y-4">
       <h1 class="text-title lg:text-3xl text-xl font-bold font-heading"><?= $query->post_title ?></h1>

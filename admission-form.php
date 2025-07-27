@@ -7,7 +7,7 @@
     });
   })
 </script>
-<main class="container space-y-5 my-5">
+<main class="container space-y-5 my-5 animate-fade-in">
   <h1 class="text-title text-2xl font-bold font-heading"><?= $page_title ?></h1>
     
   <form action="" class="space-y-3">

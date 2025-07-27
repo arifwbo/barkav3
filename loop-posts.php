@@ -99,7 +99,7 @@
     }
   }
 </script>
-<main class="container space-y-5 my-5 flex-1">
+<main class="container space-y-5 my-5 flex-1 animate-fade-in">
   <?php $this->load->view(THEME_PATH . 'components/newsticker') ?>
 
   <div class="flex flex-col lg:flex-row items-start gap-x-6 relative space-y-5 lg:space-y-0">

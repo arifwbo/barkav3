@@ -7,7 +7,7 @@
     });
   })
 </script>
-<main class="container space-y-5 my-5 flex-1">
+<main class="container space-y-5 my-5 flex-1 animate-fade-in">
   <h1 class="text-title text-2xl font-bold font-heading"><?= ucwords($page_title) ?></h1>
   <form class="space-y-3">
     <div class="flex flex-col lg:flex-row">

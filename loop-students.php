@@ -84,7 +84,7 @@
       }
     }
 </style>
-<main class="container space-y-5 my-5 flex-1">
+<main class="container space-y-5 my-5 flex-1 animate-fade-in">
   <div class="space-y-4">
     <h3 class="font-heading text-2xl font-black text-title"><span class="fa fa-student"></span> <?= ucwords($page_title) ?></h3>
     <form onsubmit="return false;" class="mb-3">

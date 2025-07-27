@@ -12,8 +12,10 @@
           label: '',
           data: <?= $data ?>,
           borderWidth: 2,
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          borderColor: 'rgba(75, 192, 192, 1)'
+          backgroundColor: 'rgba(59, 130, 246, 0.3)',
+          borderColor: 'rgba(59, 130, 246, 1)',
+          hoverBackgroundColor: 'rgba(252, 211, 77, 0.4)',
+          hoverBorderColor: 'rgba(252, 211, 77, 1)'
         }]
       },
       options: {
@@ -29,7 +31,7 @@
     });
   });
 </script>
-<main class="container space-y-5 my-5 flex-1">
+<main class="container space-y-5 my-5 flex-1 animate-fade-in">
   <div class="flex flex-col lg:flex-row items-start gap-x-6 relative space-y-5 lg:space-y-0">
     <div class="w-full lg:w-2/3 space-y-4">
       <h1 class="font-heading text-2xl capitalize font-black text-title"><span class="fa fa-bar-chart"></span> <?= ucwords($page_title) ?></h1>

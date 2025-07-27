@@ -45,7 +45,7 @@
   }
 </script>
 
-<main class="container space-y-5 my-5 flex-1">
+<main class="container space-y-5 my-5 flex-1 animate-fade-in">
   <div class="space-y-4">
     <h1 class="font-heading text-2xl font-black text-title"><span class="fa fa-bar"></span> <?= ucwords($page_title) ?></h1>
     <table class="table w-full table-auto py-2">

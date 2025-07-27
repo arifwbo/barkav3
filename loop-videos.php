@@ -35,7 +35,7 @@
   }
 </script>
 
-<main class="container space-y-5 my-5 flex-1">
+<main class="container space-y-5 my-5 flex-1 animate-fade-in">
   <h1 class="text-title text-2xl font-bold font-heading"><?= $page_title ?></h1>
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
     <?php foreach($query->result() as $video) : ?>

@@ -10,7 +10,7 @@
 </style>
 <?php defined('BASEPATH') OR exit('No direct script access allowed') ?>
 
-<main class="container space-y-5 my-5 flex-1">
+<main class="container space-y-5 my-5 flex-1 animate-fade-in">
   <div class="flex flex-col lg:flex-row items-start gap-x-6 relative space-y-5 lg:space-y-0">
     <section class="w-full lg:w-2/3 space-y-4">
       <h1 class="font-heading text-2xl capitalize font-black text-title"><span class="fa fa-phone"></span> <?= ucwords($page_title) ?></h1>
